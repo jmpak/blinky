@@ -5,26 +5,26 @@ module Blinky
 
         def success!
           off! 
-          set_colour("\x01") 
+          set_colour("\x06") 
         end
 
         def failure!  
           off!
-          set_colour("\x02") 
+          set_colour("\x05") 
         end
 
         def building!
           off!  
-          set_colour("\x04")
+          set_colour("\x03")
         end
 
         def warning!
           off!
-          set_colour("\x06")
+          set_colour("\x04")
         end
 
         def off!
-          set_colour("\x00")  
+          set_colour("\x07")  
         end
 
         def init
@@ -32,7 +32,7 @@ module Blinky
 
         private
         def set_colour colour
-          @handle.usb_control_msg(0x21, 0x09, 0x0635, 0x000, "\x65\x0C#{colour}\xFF\x00\x00\x00\x00", 0)
+          @handle.usb_control_msg(0x21, 0x09, 0x0635, 0x000, "\x65\x0C\xFF#{colour}\x00\x00\x00\x00", 0)
         end
       end
     end
